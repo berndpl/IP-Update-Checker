@@ -21,7 +21,7 @@ p.each_line do |l|
   timestamp = Time.now.strftime("%H:%M:%S")
   if(l.scan("#{IP}").empty?)
   	puts "#{timestamp} ‣ #{IP} (Updated!)"
-    system("terminal-notifier -message \"DNS Changed\" -open \"http://#{URL}\"")
+    system("terminal-notifier -message \"Hurray. DNS changed • Check #{URL}\" -open \"http://#{URL}\"")
   else
 	timestamp = Time.now.strftime("%H:%M:%S")
 	puts "#{timestamp} • #{IP} (Original)"   	
