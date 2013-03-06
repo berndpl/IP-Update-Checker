@@ -2,12 +2,13 @@
 
 require 'Resolv'
 
-IP = Resolv.getaddress ARGV[0]
+#----Config-----
+Interval = 10 #in seconds
+#---------------
 
-puts "IP #{IP}"
-
-# IP = ARGV[0]
 URL = ARGV[0]
+
+IP = Resolv.getaddress URL
 
 if (ARGV.count==1)
 	puts "Start checking for IP change. [IP] #{IP} [URL] #{URL}"
@@ -15,7 +16,7 @@ else
 	puts "Usage: ipupdatecheck <url>"
 end
 
-p = IO.popen("ping -i 10 #{URL}")
+p = IO.popen("ping -i #{Interval} #{URL}")
 p.each_line do |l|
   timestamp = Time.now.strftime("%H:%M:%S")
   if(l.scan("#{IP}").empty?)
